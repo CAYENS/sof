@@ -7,7 +7,7 @@ const invitationConfig = {
     venue: 'Москва, Музей русского импрессионизма',
     telegramUsername: '@VIK_1s',
     telegramMessage: 'Да, я на всё готова!',
-    defaultMaskPhoto: './assets/images/couple-photo.svg',
+    defaultMaskPhoto: './assets/images/couple-photo.png',
     musicPath: '',
   },
   copyVariants: {
@@ -107,7 +107,8 @@ function applyMaskPhoto() {
   const imagePath = invitationConfig.profile.defaultMaskPhoto;
   refs.maskOrb.style.setProperty('--mask-image', `url('${imagePath}')`);
   refs.maskOrb.classList.add('has-photo');
-  refs.orbHint.textContent = 'Фото встроено в маску';
+  refs.orbHint.textContent = '';
+  refs.orbHint.style.display = 'none';
 }
 
 function applyTextContent() {
