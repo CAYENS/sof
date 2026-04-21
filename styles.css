@@ -175,7 +175,6 @@ body {
   background-position: center;
   box-shadow: 0 0 40px rgba(202, 170, 126, 0.31), inset 0 -18px 28px rgba(0, 0, 0, 0.4);
   animation: floatMask 7.5s ease-in-out infinite;
-  cursor: pointer;
   position: relative;
 }
 
@@ -190,10 +189,6 @@ body {
 .mask-orb.has-photo {
   border-color: rgba(255, 222, 175, 0.6);
   box-shadow: 0 0 48px rgba(202, 170, 126, 0.45), inset 0 -20px 20px rgba(0, 0, 0, 0.18);
-}
-
-.photo-input {
-  display: none;
 }
 
 .orb-hint {
@@ -301,7 +296,6 @@ body {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   padding: 0.9rem 1.65rem;
-  cursor: pointer;
   box-shadow: 0 10px 26px rgba(159, 124, 81, 0.45);
   transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
 }
@@ -320,8 +314,7 @@ body {
 .agree-button:hover,
 .start-button:hover,
 .agree-button:focus-visible,
-.start-button:focus-visible,
-.mask-orb:hover {
+.start-button:focus-visible {
   transform: translateY(-2px) scale(1.01);
   box-shadow: 0 14px 31px rgba(188, 143, 92, 0.48);
   filter: saturate(1.1);
@@ -329,8 +322,7 @@ body {
 }
 
 .agree-button:active,
-.start-button:active,
-.mask-orb:active {
+.start-button:active {
   transform: translateY(1px) scale(0.997);
 }
 

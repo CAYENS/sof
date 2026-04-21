@@ -6,6 +6,7 @@ const invitationConfig = {
     venue: 'Москва, Музей русского импрессионизма',
     telegramUsername: '@VIK_1s',
     telegramMessage: 'Да, я на всё готова!',
+    defaultMaskPhoto: './assets/images/couple-photo.jpg',
     musicPath: '',
   },
   copyVariants: {
@@ -84,7 +85,6 @@ const refs = {
   sparkles: document.getElementById('sparkles'),
   hero: document.getElementById('hero'),
   maskOrb: document.getElementById('maskOrb'),
-  photoInput: document.getElementById('photoInput'),
 };
 
 let audioReady = false;
@@ -99,6 +99,14 @@ function buildTelegramLink() {
   const username = invitationConfig.profile.telegramUsername.replace('@', '');
   const text = encodeURIComponent(invitationConfig.profile.telegramMessage);
   return `https://t.me/${username}?text=${text}`;
+}
+
+function applyMaskPhoto() {
+  const imagePath = invitationConfig.profile.defaultMaskPhoto;
+  if (!imagePath) return;
+
+  refs.maskOrb.style.setProperty('--mask-image', `url('${imagePath}')`);
+  refs.maskOrb.classList.add('has-photo');
 }
 
 function applyTextContent() {
@@ -221,15 +229,6 @@ function onAgree() {
   }, invitationConfig.redirects.delayAfterConfirmMs);
 }
 
-function handlePhotoUpload(event) {
-  const file = event.target.files?.[0];
-  if (!file) return;
-
-  const imageURL = URL.createObjectURL(file);
-  refs.maskOrb.style.setProperty('--mask-image', `url('${imageURL}')`);
-  refs.maskOrb.classList.add('has-photo');
-}
-
 async function openInvitation() {
   refs.introOverlay.classList.add('hidden');
   refs.introOverlay.setAttribute('aria-hidden', 'true');
@@ -243,11 +242,10 @@ function attachEvents() {
   refs.startButton.addEventListener('click', openInvitation, { once: true });
   refs.soundToggle.addEventListener('click', toggleSound);
   refs.agreeButton.addEventListener('click', onAgree);
-  refs.maskOrb.addEventListener('click', () => refs.photoInput.click());
-  refs.photoInput.addEventListener('change', handlePhotoUpload);
 }
 
 applyTextContent();
+applyMaskPhoto();
 initRevealAnimations();
 initSparkles();
 initParallax();
