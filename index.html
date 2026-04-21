@@ -20,6 +20,7 @@
     <div class="grain"></div>
     <div class="vignette"></div>
     <div class="ambient-glow"></div>
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
 
     <div class="intro-overlay" id="introOverlay" aria-hidden="false">
       <div class="intro-card">
@@ -33,9 +34,13 @@
     <audio id="bgMusic" loop preload="none"></audio>
 
     <main class="page" id="page" aria-live="polite">
-      <header class="hero reveal">
+      <header class="hero reveal" id="hero">
         <div class="hero-light"></div>
-        <div class="mask-orb" aria-hidden="true"></div>
+        <div class="mask-wrap">
+          <button id="maskOrb" class="mask-orb" aria-label="Загрузить фото в маску"></button>
+          <div class="orb-hint">Нажми на маску и добавь фото</div>
+          <input id="photoInput" class="photo-input" type="file" accept="image/*" />
+        </div>
         <p class="eyebrow" id="eyebrowText"></p>
         <h2 class="hero-title" id="heroTitle"></h2>
         <p class="hero-description" id="heroDescription"></p>

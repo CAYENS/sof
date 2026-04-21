@@ -22,10 +22,24 @@ python3 -m http.server 4173
 - Дата: `profile.date`
 - Название выставки: `profile.exhibition`
 - Место: `profile.venue`
-- Ссылка после согласия: `profile.responseLink`
+- Telegram username: `profile.telegramUsername`
+- Сообщение в Telegram: `profile.telegramMessage`
 - Музыкальный файл: `profile.musicPath`
 - Тексты: `copyVariants` + `activeVariant`
 - Финальная фраза: `copyVariants.<variant>.confirmation`
+
+## Telegram сценарий
+
+После нажатия на кнопку сайт открывает:
+`https://t.me/<username>?text=<ваше_сообщение>`
+
+По умолчанию:
+- `@VIK_1s`
+- `Да, я на всё готова!`
+
+## Фото в маске
+
+Нажмите на «яйцо» (маску) в hero-блоке и выберите фото с устройства — оно подставится внутрь формы маски.
 
 ## Музыка
 
@@ -39,5 +53,5 @@ python3 -m http.server 4173
 
 - `index.html` — разметка и секции
 - `styles.css` — визуальный стиль, анимации, адаптив
-- `script.js` — конфиг, сценарии интро/музыки/CTA
-- `assets/audio/` — аудио
+- `script.js` — конфиг, сценарии интро/музыки/CTA/Telegram/фото
+- `assets/audio/` — инструкции для аудио

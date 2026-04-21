@@ -4,7 +4,8 @@ const invitationConfig = {
     date: '21 апреля',
     exhibition: '«Под маской»',
     venue: 'Москва, Музей русского импрессионизма',
-    responseLink: 'https://t.me/your_username',
+    telegramUsername: '@VIK_1s',
+    telegramMessage: 'Да, я на всё готова!',
     musicPath: '',
   },
   copyVariants: {
@@ -63,7 +64,11 @@ const invitationConfig = {
     fadeInDurationMs: 1800,
   },
   redirects: {
-    delayAfterConfirmMs: 2200,
+    delayAfterConfirmMs: 2100,
+  },
+  visuals: {
+    sparkleCount: 20,
+    parallaxStrength: 10,
   },
 };
 
@@ -76,6 +81,10 @@ const refs = {
   agreeButton: document.getElementById('agreeButton'),
   confirmation: document.getElementById('confirmation'),
   confirmationText: document.getElementById('confirmationText'),
+  sparkles: document.getElementById('sparkles'),
+  hero: document.getElementById('hero'),
+  maskOrb: document.getElementById('maskOrb'),
+  photoInput: document.getElementById('photoInput'),
 };
 
 let audioReady = false;
@@ -84,6 +93,12 @@ let fadeHandle = null;
 
 function pickCopy() {
   return invitationConfig.copyVariants[invitationConfig.activeVariant] || invitationConfig.copyVariants.romantic;
+}
+
+function buildTelegramLink() {
+  const username = invitationConfig.profile.telegramUsername.replace('@', '');
+  const text = encodeURIComponent(invitationConfig.profile.telegramMessage);
+  return `https://t.me/${username}?text=${text}`;
 }
 
 function applyTextContent() {
@@ -121,10 +136,36 @@ function initRevealAnimations() {
         }
       });
     },
-    { threshold: 0.25 }
+    { threshold: 0.2 }
   );
 
   items.forEach((item) => observer.observe(item));
+}
+
+function initSparkles() {
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < invitationConfig.visuals.sparkleCount; i += 1) {
+    const dot = document.createElement('span');
+    dot.className = 'spark';
+    dot.style.left = `${Math.random() * 100}%`;
+    dot.style.top = `${Math.random() * 100}%`;
+    dot.style.animationDelay = `${Math.random() * 8}s`;
+    dot.style.animationDuration = `${7 + Math.random() * 8}s`;
+    fragment.append(dot);
+  }
+  refs.sparkles.append(fragment);
+}
+
+function initParallax() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  document.addEventListener('pointermove', (event) => {
+    const x = (event.clientX / window.innerWidth - 0.5) * invitationConfig.visuals.parallaxStrength;
+    const y = (event.clientY / window.innerHeight - 0.5) * invitationConfig.visuals.parallaxStrength;
+    refs.hero.style.setProperty('--parallaxX', `${x.toFixed(2)}px`);
+    refs.hero.style.setProperty('--parallaxY', `${y.toFixed(2)}px`);
+  });
 }
 
 async function playMusicWithFade() {
@@ -176,15 +217,24 @@ function onAgree() {
   refs.confirmation.setAttribute('aria-hidden', 'false');
 
   window.setTimeout(() => {
-    window.location.href = invitationConfig.profile.responseLink;
+    window.location.href = buildTelegramLink();
   }, invitationConfig.redirects.delayAfterConfirmMs);
+}
+
+function handlePhotoUpload(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  const imageURL = URL.createObjectURL(file);
+  refs.maskOrb.style.setProperty('--mask-image', `url('${imageURL}')`);
+  refs.maskOrb.classList.add('has-photo');
 }
 
 async function openInvitation() {
   refs.introOverlay.classList.add('hidden');
   refs.introOverlay.setAttribute('aria-hidden', 'true');
   document.querySelectorAll('.reveal').forEach((section, index) => {
-    window.setTimeout(() => section.classList.add('show'), 140 * index);
+    window.setTimeout(() => section.classList.add('show'), 120 * index);
   });
   await playMusicWithFade();
 }
@@ -193,8 +243,12 @@ function attachEvents() {
   refs.startButton.addEventListener('click', openInvitation, { once: true });
   refs.soundToggle.addEventListener('click', toggleSound);
   refs.agreeButton.addEventListener('click', onAgree);
+  refs.maskOrb.addEventListener('click', () => refs.photoInput.click());
+  refs.photoInput.addEventListener('change', handlePhotoUpload);
 }
 
 applyTextContent();
 initRevealAnimations();
+initSparkles();
+initParallax();
 attachEvents();

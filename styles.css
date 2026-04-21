@@ -1,10 +1,7 @@
 :root {
-  --bg: #080708;
-  --bg-soft: #121014;
   --text: #f2ede3;
   --muted: #b9ae9f;
   --gold: #c3a277;
-  --gold-soft: rgba(195, 162, 119, 0.4);
   --card: rgba(19, 16, 19, 0.58);
   --line: rgba(195, 162, 119, 0.32);
   --shadow: 0 20px 70px rgba(0, 0, 0, 0.56);
@@ -32,7 +29,8 @@ body {
 
 .grain,
 .vignette,
-.ambient-glow {
+.ambient-glow,
+.sparkles {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -51,6 +49,33 @@ body {
 .ambient-glow {
   background: radial-gradient(circle at 50% 18%, rgba(218, 179, 126, 0.2), transparent 55%);
   animation: breathe 9s ease-in-out infinite;
+}
+
+.spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 227, 186, 0.92);
+  box-shadow: 0 0 10px rgba(255, 214, 155, 0.65);
+  animation: sparkleUp linear infinite;
+}
+
+@keyframes sparkleUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.7);
+  }
+  15% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-70px) scale(1.15);
+  }
 }
 
 @keyframes breathe {
@@ -85,10 +110,34 @@ body {
 }
 
 .hero {
+  --parallaxX: 0px;
+  --parallaxY: 0px;
   position: relative;
   overflow: hidden;
   padding: 3.8rem 1.35rem 2.35rem;
   text-align: center;
+  transform: translate3d(var(--parallaxX), var(--parallaxY), 0);
+  transition: transform 0.25s ease;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(245, 221, 188, 0.08) 32%, transparent 58%);
+  transform: translateX(-130%);
+  animation: heroShine 9s ease-in-out infinite;
+}
+
+@keyframes heroShine {
+  0%,
+  100% {
+    transform: translateX(-130%);
+  }
+  45%,
+  55% {
+    transform: translateX(130%);
+  }
 }
 
 .hero-light {
@@ -107,16 +156,52 @@ body {
   }
 }
 
+.mask-wrap {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.3rem;
+}
+
 .mask-orb {
+  --mask-image: none;
   width: clamp(130px, 31vw, 210px);
   aspect-ratio: 3 / 4;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto;
   border-radius: 50% 50% 45% 45%;
   border: 1px solid var(--line);
-  background: radial-gradient(circle at 36% 30%, rgba(238, 215, 183, 0.36), transparent 46%),
+  background-image: var(--mask-image), radial-gradient(circle at 36% 30%, rgba(238, 215, 183, 0.36), transparent 46%),
     linear-gradient(160deg, rgba(199, 171, 132, 0.4), rgba(82, 59, 47, 0.14));
+  background-size: cover, auto, auto;
+  background-position: center;
   box-shadow: 0 0 40px rgba(202, 170, 126, 0.31), inset 0 -18px 28px rgba(0, 0, 0, 0.4);
   animation: floatMask 7.5s ease-in-out infinite;
+  cursor: pointer;
+  position: relative;
+}
+
+.mask-orb::before {
+  content: '';
+  position: absolute;
+  inset: 7%;
+  border-radius: inherit;
+  border: 1px solid rgba(250, 223, 176, 0.22);
+}
+
+.mask-orb.has-photo {
+  border-color: rgba(255, 222, 175, 0.6);
+  box-shadow: 0 0 48px rgba(202, 170, 126, 0.45), inset 0 -20px 20px rgba(0, 0, 0, 0.18);
+}
+
+.photo-input {
+  display: none;
+}
+
+.orb-hint {
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c7baa8;
 }
 
 @keyframes floatMask {
@@ -151,6 +236,20 @@ body {
 .hero-title {
   font-size: clamp(2rem, 9vw, 4rem);
   margin: 0.55rem 0 1rem;
+  animation: titleRise 1.4s ease both;
+}
+
+@keyframes titleRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    letter-spacing: 0.02em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
 }
 
 .hero-description,
@@ -221,7 +320,8 @@ body {
 .agree-button:hover,
 .start-button:hover,
 .agree-button:focus-visible,
-.start-button:focus-visible {
+.start-button:focus-visible,
+.mask-orb:hover {
   transform: translateY(-2px) scale(1.01);
   box-shadow: 0 14px 31px rgba(188, 143, 92, 0.48);
   filter: saturate(1.1);
@@ -229,7 +329,8 @@ body {
 }
 
 .agree-button:active,
-.start-button:active {
+.start-button:active,
+.mask-orb:active {
   transform: translateY(1px) scale(0.997);
 }
 
