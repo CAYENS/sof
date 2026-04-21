@@ -2,6 +2,7 @@ const invitationConfig = {
   profile: {
     name: 'София',
     date: '21 апреля',
+    time: '18:00',
     exhibition: '«Под маской»',
     venue: 'Москва, Музей русского импрессионизма',
     telegramUsername: '@VIK_1s',
@@ -39,7 +40,7 @@ const invitationConfig = {
         'Эстетика перевоплощений, карнавала и лёгкой тайны — история, которую хочется прожить не в одиночку.',
       inviteTitle: 'Предлагаю открыть эту историю вместе.',
       inviteText:
-        '21 апреля. Музей русского импрессионизма. Красиво, уверенно и абсолютно в твоём стиле.',
+        '21 апреля в 18:00. Музей русского импрессионизма. Я буду ждать)',
       confirmation: 'Прекрасный выбор. Тогда пусть этот вечер начнётся с правильного акцента.',
     },
     confident: {
@@ -85,6 +86,7 @@ const refs = {
   sparkles: document.getElementById('sparkles'),
   hero: document.getElementById('hero'),
   maskOrb: document.getElementById('maskOrb'),
+  orbHint: document.getElementById('orbHint'),
 };
 
 let audioReady = false;
@@ -103,15 +105,27 @@ function buildTelegramLink() {
 
 function applyMaskPhoto() {
   const imagePath = invitationConfig.profile.defaultMaskPhoto;
-  if (!imagePath) return;
+  if (!imagePath) {
+    refs.orbHint.textContent = 'Добавьте фото в assets/images/couple-photo.jpg';
+    return;
+  }
 
-  refs.maskOrb.style.setProperty('--mask-image', `url('${imagePath}')`);
-  refs.maskOrb.classList.add('has-photo');
+  const probe = new Image();
+  probe.onload = () => {
+    refs.maskOrb.style.setProperty('--mask-image', `url('${imagePath}')`);
+    refs.maskOrb.classList.add('has-photo');
+    refs.orbHint.textContent = 'Ваше фото в маске';
+  };
+  probe.onerror = () => {
+    refs.maskOrb.classList.remove('has-photo');
+    refs.orbHint.textContent = 'Фото не найдено: assets/images/couple-photo.jpg';
+  };
+  probe.src = imagePath;
 }
 
 function applyTextContent() {
   const copy = pickCopy();
-  const { name, date, exhibition, venue } = invitationConfig.profile;
+  const { name, date, time, exhibition, venue } = invitationConfig.profile;
 
   document.getElementById('eyebrowText').textContent = copy.eyebrow;
   document.getElementById('heroTitle').textContent = copy.heroTitle;
@@ -124,6 +138,7 @@ function applyTextContent() {
   document.getElementById('inviteText').textContent = copy.inviteText;
   document.getElementById('factDate').textContent = date;
   document.getElementById('factPlace').textContent = venue;
+  document.getElementById('factTime').textContent = `Начало в ${time}`;
   refs.confirmationText.textContent = copy.confirmation;
 
   document.title = `${name} — приглашение на ${exhibition}`;

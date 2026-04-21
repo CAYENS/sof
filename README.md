@@ -20,6 +20,7 @@ python3 -m http.server 4173
 
 - Имя девушки: `profile.name`
 - Дата: `profile.date`
+- Время: `profile.time`
 - Название выставки: `profile.exhibition`
 - Место: `profile.venue`
 - Telegram username: `profile.telegramUsername`
@@ -41,7 +42,8 @@ python3 -m http.server 4173
 
 Фото в маске теперь постоянное и берётся из `profile.defaultMaskPhoto` (по умолчанию `./assets/images/couple-photo.jpg`).
 
-Если нужно заменить фото, просто подмените файл по этому пути или укажите другой путь в `script.js`.
+Важно: чтобы фото реально отображалось, файл должен физически лежать по этому пути.
+Если файла нет, на странице появится подсказка `Фото не найдено: assets/images/couple-photo.jpg`.
 
 ## Музыка
 
