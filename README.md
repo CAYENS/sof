@@ -40,10 +40,10 @@ python3 -m http.server 4173
 
 ## Фото в маске
 
-Фото в маске теперь постоянное и берётся из `profile.defaultMaskPhoto` (по умолчанию `./assets/images/couple-photo.jpg`).
+Фото в маске теперь постоянное и берётся из `profile.defaultMaskPhoto` (по умолчанию `./assets/images/couple-photo.svg`).
 
 Важно: чтобы фото реально отображалось, файл должен физически лежать по этому пути.
-Если файла нет, на странице появится подсказка `Фото не найдено: assets/images/couple-photo.jpg`.
+В проекте уже есть встроенное изображение `assets/images/couple-photo.svg` — оно отображается сразу.
 
 ## Музыка
 

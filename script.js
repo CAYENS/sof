@@ -7,7 +7,7 @@ const invitationConfig = {
     venue: 'Москва, Музей русского импрессионизма',
     telegramUsername: '@VIK_1s',
     telegramMessage: 'Да, я на всё готова!',
-    defaultMaskPhoto: './assets/images/couple-photo.jpg',
+    defaultMaskPhoto: './assets/images/couple-photo.svg',
     musicPath: '',
   },
   copyVariants: {
@@ -105,22 +105,9 @@ function buildTelegramLink() {
 
 function applyMaskPhoto() {
   const imagePath = invitationConfig.profile.defaultMaskPhoto;
-  if (!imagePath) {
-    refs.orbHint.textContent = 'Добавьте фото в assets/images/couple-photo.jpg';
-    return;
-  }
-
-  const probe = new Image();
-  probe.onload = () => {
-    refs.maskOrb.style.setProperty('--mask-image', `url('${imagePath}')`);
-    refs.maskOrb.classList.add('has-photo');
-    refs.orbHint.textContent = 'Ваше фото в маске';
-  };
-  probe.onerror = () => {
-    refs.maskOrb.classList.remove('has-photo');
-    refs.orbHint.textContent = 'Фото не найдено: assets/images/couple-photo.jpg';
-  };
-  probe.src = imagePath;
+  refs.maskOrb.style.setProperty('--mask-image', `url('${imagePath}')`);
+  refs.maskOrb.classList.add('has-photo');
+  refs.orbHint.textContent = 'Фото встроено в маску';
 }
 
 function applyTextContent() {

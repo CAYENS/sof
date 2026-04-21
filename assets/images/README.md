@@ -2,6 +2,6 @@
 
 Place your permanent hero photo at:
 
-`assets/images/couple-photo.jpg`
+`assets/images/couple-photo.svg`
 
-This file is referenced by default in `script.js` (`profile.defaultMaskPhoto`).
+This SVG is referenced by default in `script.js` (`profile.defaultMaskPhoto`). You can replace it with your own file and update the path.
