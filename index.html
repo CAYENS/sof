@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Персональное приглашение</title>
+    <meta
+      name="description"
+      content="Атмосферное персональное приглашение на выставку «Под маской» в Москве."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <div class="vignette"></div>
+    <div class="ambient-glow"></div>
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+    <div class="intro-overlay" id="introOverlay" aria-hidden="false">
+      <div class="intro-card">
+        <p class="intro-kicker">Личное приглашение</p>
+        <h1 class="intro-title">Вечер, где красота скрывается под маской</h1>
+        <p class="intro-subtitle">Коснись, чтобы открыть атмосферу</p>
+        <button id="startButton" class="start-button">Открыть приглашение</button>
+      </div>
+    </div>
+
+    <audio id="bgMusic" loop preload="none"></audio>
+
+    <main class="page" id="page" aria-live="polite">
+      <header class="hero reveal" id="hero">
+        <div class="hero-light"></div>
+        <div class="mask-wrap">
+          <div id="maskOrb" class="mask-orb has-photo" aria-label="Фото в маске" role="img"></div>
+          <div class="orb-hint" id="orbHint">Фото встроено в маску</div>
+        </div>
+        <p class="eyebrow" id="eyebrowText"></p>
+        <h2 class="hero-title" id="heroTitle"></h2>
+        <p class="hero-description" id="heroDescription"></p>
+      </header>
+
+      <section class="content reveal" id="personalSection">
+        <p class="section-label">Для тебя</p>
+        <h3 class="section-title" id="personalTitle"></h3>
+        <p class="section-text" id="personalText"></p>
+      </section>
+
+      <section class="content reveal" id="eventSection">
+        <p class="section-label">Событие</p>
+        <h3 class="section-title" id="eventTitle"></h3>
+        <p class="section-text" id="eventText"></p>
+        <div class="event-facts">
+          <span id="factDate"></span>
+          <span id="factPlace"></span>
+          <span id="factTime"></span>
+        </div>
+      </section>
+
+      <section class="content content-invite reveal" id="inviteSection">
+        <p class="section-label">Приглашение</p>
+        <h3 class="section-title" id="inviteTitle"></h3>
+        <p class="section-text" id="inviteText"></p>
+      </section>
+
+      <section class="cta-section reveal">
+        <button id="agreeButton" class="agree-button">Да, я на всё согласна</button>
+        <p class="cta-hint">Одно касание — и этот вечер уже начинает складываться.</p>
+      </section>
+    </main>
+
+    <button class="sound-toggle" id="soundToggle" aria-label="Выключить звук" disabled>
+      <span class="sound-dot"></span>
+      <span id="soundState">Sound on</span>
+    </button>
+
+    <div class="confirmation" id="confirmation" aria-hidden="true">
+      <div class="confirmation-card">
+        <p class="confirmation-title">Принято.</p>
+        <p class="confirmation-text" id="confirmationText"></p>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
