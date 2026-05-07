@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Портфолио разработчика</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero" id="home">
+      <nav class="nav container">
+        <a class="logo" href="#home">DEV.PORTFOLIO</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">☰</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" data-tooltip="Узнайте, кто я">Обо мне</a></li>
+          <li><a href="#projects" data-tooltip="Лучшие работы">Проекты</a></li>
+          <li><a href="#contacts" data-tooltip="Связаться со мной">Контакты</a></li>
+          <li><a href="#reviews" data-tooltip="Что говорят клиенты">Отзывы</a></li>
+        </ul>
+      </nav>
+
+      <div class="hero-content container">
+        <p class="hero-badge">Frontend / Fullstack Developer</p>
+        <h1 id="typingTitle" class="hero-title"></h1>
+        <p class="hero-subtitle">
+          Создаю быстрые, красивые и удобные веб-приложения с упором на UX, производительность
+          и чистый код.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Посмотреть проекты</a>
+          <a class="btn btn-secondary" href="#contacts">Связаться</a>
+        </div>
+      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
+    </header>
+
+    <main>
+      <section id="about" class="section container reveal">
+        <h2>Обо мне</h2>
+        <p>
+          Привет! Я разработчик, который любит превращать идеи в масштабируемые цифровые продукты.
+          Работаю с современным JavaScript-стеком, проектирую архитектуру интерфейсов и уделяю
+          внимание деталям.
+        </p>
+        <div class="about-grid">
+          <article class="card hover-lift">
+            <h3>Стек</h3>
+            <p>HTML, CSS, JavaScript, TypeScript, React, Node.js, REST API.</p>
+          </article>
+          <article class="card hover-lift">
+            <h3>Фокус</h3>
+            <p>Адаптивная вёрстка, доступность, оптимизация и анимации.</p>
+          </article>
+          <article class="card hover-lift">
+            <h3>Подход</h3>
+            <p>Поддерживаемый код, модульность и понятная документация.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section container reveal">
+        <div class="section-head">
+          <h2>Проекты</h2>
+          <p>Новые проекты добавляются через <code>data.json</code> без изменения верстки.</p>
+        </div>
+        <div id="projectsGrid" class="projects-grid"></div>
+      </section>
+
+      <section id="contacts" class="section container reveal">
+        <h2>Контакты</h2>
+        <p>Оставьте сообщение — отвечаю обычно в течение 24 часов.</p>
+        <form id="contactForm" class="card form" novalidate>
+          <label>
+            Имя
+            <input type="text" name="name" required placeholder="Ваше имя" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Сообщение
+            <textarea name="message" rows="5" required placeholder="Расскажите о задаче"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Отправить</button>
+          <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="reviews" class="section container reveal">
+        <div class="section-head">
+          <h2>Отзывы</h2>
+          <p>Отзывы также берутся из JSON-конфига.</p>
+        </div>
+        <div id="reviewsList" class="reviews-list"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© <span id="year"></span> Developer Portfolio. Сделано с ❤️ и JavaScript.</p>
+      </div>
+    </footer>
+
+    <template id="projectTemplate">
+      <article class="project-card hover-lift">
+        <img class="project-image" alt="" loading="lazy" />
+        <div class="project-content">
+          <h3></h3>
+          <p class="project-description"></p>
+          <div class="project-tags"></div>
+          <a class="btn btn-secondary project-link" target="_blank" rel="noopener noreferrer">Открыть</a>
+        </div>
+      </article>
+    </template>
+
+    <template id="reviewTemplate">
+      <article class="review-card hover-lift">
+        <p class="review-text"></p>
+        <div class="review-meta">
+          <strong class="review-author"></strong>
+          <span class="review-role"></span>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

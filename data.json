@@ -1,0 +1,42 @@
+{
+  "projects": [
+    {
+      "title": "TaskFlow",
+      "description": "Планировщик задач с аналитикой и drag-and-drop интерфейсом.",
+      "image": "https://picsum.photos/seed/taskflow/900/600",
+      "url": "https://example.com/taskflow",
+      "tags": ["JavaScript", "UI/UX", "Productivity"]
+    },
+    {
+      "title": "StorePulse",
+      "description": "Дашборд интернет-магазина с визуализацией продаж и KPI в реальном времени.",
+      "image": "https://picsum.photos/seed/storepulse/900/600",
+      "url": "https://example.com/storepulse",
+      "tags": ["Dashboard", "Charts", "Realtime"]
+    },
+    {
+      "title": "TravelMap",
+      "description": "Веб-приложение для построения маршрутов с интерактивной картой.",
+      "image": "https://picsum.photos/seed/travelmap/900/600",
+      "url": "https://example.com/travelmap",
+      "tags": ["Maps", "SPA", "API"]
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Анна Смирнова",
+      "role": "Product Manager",
+      "text": "Высокая скорость работы, отличная коммуникация и качество выше ожиданий."
+    },
+    {
+      "author": "Илья Петров",
+      "role": "Founder, Startup X",
+      "text": "Приложение получилось быстрым и удобным, пользователи это сразу заметили."
+    },
+    {
+      "author": "Мария Кузнецова",
+      "role": "UX Lead",
+      "text": "Очень аккуратная реализация дизайна и внимание к деталям в анимациях."
+    }
+  ]
+}
