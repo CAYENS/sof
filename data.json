@@ -1,42 +1,12 @@
 {
   "projects": [
-    {
-      "title": "TaskFlow",
-      "description": "Планировщик задач с аналитикой и drag-and-drop интерфейсом.",
-      "image": "https://picsum.photos/seed/taskflow/900/600",
-      "url": "https://example.com/taskflow",
-      "tags": ["JavaScript", "UI/UX", "Productivity"]
-    },
-    {
-      "title": "StorePulse",
-      "description": "Дашборд интернет-магазина с визуализацией продаж и KPI в реальном времени.",
-      "image": "https://picsum.photos/seed/storepulse/900/600",
-      "url": "https://example.com/storepulse",
-      "tags": ["Dashboard", "Charts", "Realtime"]
-    },
-    {
-      "title": "TravelMap",
-      "description": "Веб-приложение для построения маршрутов с интерактивной картой.",
-      "image": "https://picsum.photos/seed/travelmap/900/600",
-      "url": "https://example.com/travelmap",
-      "tags": ["Maps", "SPA", "API"]
-    }
+    { "title": "NeuroBoard", "description": "AI dashboard with streaming widgets and terminal-like analytics UI.", "image": "https://picsum.photos/seed/neuro/900/600", "url": "https://example.com/neuroboard", "tags": ["AI", "Realtime", "Next.js"] },
+    { "title": "CloudForge", "description": "DevOps cockpit for deployments, metrics and incident timeline.", "image": "https://picsum.photos/seed/cloudforge/900/600", "url": "https://example.com/cloudforge", "tags": ["DevOps", "Observability", "SRE"] },
+    { "title": "Quantum UI Kit", "description": "Design system with animated tokens, themed components and docs.", "image": "https://picsum.photos/seed/quantum/900/600", "url": "https://example.com/quantum", "tags": ["Design System", "Animation", "DX"] }
   ],
   "reviews": [
-    {
-      "author": "Анна Смирнова",
-      "role": "Product Manager",
-      "text": "Высокая скорость работы, отличная коммуникация и качество выше ожиданий."
-    },
-    {
-      "author": "Илья Петров",
-      "role": "Founder, Startup X",
-      "text": "Приложение получилось быстрым и удобным, пользователи это сразу заметили."
-    },
-    {
-      "author": "Мария Кузнецова",
-      "role": "UX Lead",
-      "text": "Очень аккуратная реализация дизайна и внимание к деталям в анимациях."
-    }
+    { "author": "Nina Park", "role": "CTO", "text": "Deep engineering quality and top-tier product sense." },
+    { "author": "Artem Volkov", "role": "Founder", "text": "Fast iterations, pixel-perfect UI, and stable releases." },
+    { "author": "Li Wei", "role": "Product Lead", "text": "Great communication and outstanding execution speed." }
   ]
 }
