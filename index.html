@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Portfolio X</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="preloader" class="preloader">
+      <div class="loader-scene">
+        <div class="orb"></div>
+        <div class="rings"></div>
+        <p data-i18n="loading">Загрузка кибер-портфолио...</p>
+      </div>
+    </div>
+
+    <div class="stars" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header id="home" class="hero">
+      <nav class="nav container glass">
+        <a class="logo" href="#home">CYBER.DEV</a>
+        <div class="nav-tools">
+          <select id="langSelect" class="lang-select">
+            <option value="ru">RU</option>
+            <option value="en">EN</option>
+            <option value="zh">中文</option>
+          </select>
+          <button id="navToggle" class="nav-toggle">☰</button>
+        </div>
+        <ul id="navLinks" class="nav-links">
+          <li><a href="#about" data-i18n="navAbout"></a></li>
+          <li><a href="#projects" data-i18n="navProjects"></a></li>
+          <li><a href="#playground" data-i18n="navPlayground"></a></li>
+          <li><a href="#contacts" data-i18n="navContacts"></a></li>
+        </ul>
+      </nav>
+      <div class="hero-content container">
+        <p class="hero-badge" data-i18n="heroBadge"></p>
+        <h1 id="typingTitle"></h1>
+        <p class="subtitle" data-i18n="heroSubtitle"></p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary" data-i18n="ctaProjects"></a>
+          <button class="btn btn-secondary" id="spawnCat" data-i18n="ctaCat"></button>
+        </div>
+        <div class="coder-scene glass">
+          <div class="coder-head"></div><div class="coder-body"></div><div class="screen"></div>
+          <div class="code-lines"></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="section container reveal">
+        <h2 data-i18n="aboutTitle"></h2><p data-i18n="aboutText"></p>
+      </section>
+      <section id="projects" class="section container reveal">
+        <h2 data-i18n="projectsTitle"></h2><div id="projectsGrid" class="projects-grid"></div>
+      </section>
+      <section id="playground" class="section container reveal">
+        <h2 data-i18n="playTitle"></h2>
+        <div class="playground glass">
+          <textarea id="codeInput"></textarea>
+          <div class="preview-wrap"><button id="runCodeBtn" class="btn btn-primary" data-i18n="runCode"></button><iframe id="codePreview"></iframe></div>
+        </div>
+      </section>
+      <section id="contacts" class="section container reveal">
+        <h2 data-i18n="contactsTitle"></h2>
+        <form id="contactForm" class="glass form" novalidate>
+          <input name="name" required placeholder="Name" />
+          <input type="email" name="email" required placeholder="Email" />
+          <textarea name="message" rows="4" required placeholder="Message"></textarea>
+          <button class="btn btn-primary" type="submit" data-i18n="send"></button>
+          <p id="formStatus"></p>
+        </form>
+      </section>
+      <section class="section container reveal">
+        <h2 data-i18n="reviewsTitle"></h2><div id="reviewsList" class="reviews-list"></div>
+      </section>
+    </main>
+
+    <div id="catEaster" class="cat" aria-hidden="true">🐱‍💻</div>
+
+    <template id="projectTemplate"><article class="card project tilt"><img class="project-image" alt="" /><div><h3></h3><p class="project-description"></p><div class="project-tags"></div></div></article></template>
+    <template id="reviewTemplate"><article class="card review"><p class="review-text"></p><strong class="review-author"></strong><span class="review-role"></span></article></template>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

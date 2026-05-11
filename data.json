@@ -1,0 +1,12 @@
+{
+  "projects": [
+    { "title": "NeuroBoard", "description": "AI dashboard with streaming widgets and terminal-like analytics UI.", "image": "https://picsum.photos/seed/neuro/900/600", "url": "https://example.com/neuroboard", "tags": ["AI", "Realtime", "Next.js"] },
+    { "title": "CloudForge", "description": "DevOps cockpit for deployments, metrics and incident timeline.", "image": "https://picsum.photos/seed/cloudforge/900/600", "url": "https://example.com/cloudforge", "tags": ["DevOps", "Observability", "SRE"] },
+    { "title": "Quantum UI Kit", "description": "Design system with animated tokens, themed components and docs.", "image": "https://picsum.photos/seed/quantum/900/600", "url": "https://example.com/quantum", "tags": ["Design System", "Animation", "DX"] }
+  ],
+  "reviews": [
+    { "author": "Nina Park", "role": "CTO", "text": "Deep engineering quality and top-tier product sense." },
+    { "author": "Artem Volkov", "role": "Founder", "text": "Fast iterations, pixel-perfect UI, and stable releases." },
+    { "author": "Li Wei", "role": "Product Lead", "text": "Great communication and outstanding execution speed." }
+  ]
+}
